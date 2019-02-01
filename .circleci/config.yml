@@ -33,8 +33,16 @@ jobs:
           command: yarn test
 
       - run:
+          name: Running Integration Tests
+          command: yarn test:integration
+
+      - run:
           name: Build package
           command: yarn build
+
+      - store_artifacts:
+          name: Saving visual regression snapshots
+          path: ~/integration/__image_snapshots__
 
       - run:
           name: Configure Git
@@ -50,3 +58,4 @@ jobs:
               npm publish
               git push --set-upstream origin $CIRCLE_BRANCH
             fi
+

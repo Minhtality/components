@@ -4,11 +4,15 @@
     "commonjs": true,
     "es6": true,
     "node": true,
-    "jquery": true
+    "jest": true
   },
   "globals": {
     "workbox": true,
-    "clients": true
+    "clients": true,
+    "page": true,
+    "browser": true,
+    "context": true,
+    "jestPuppeteer": true
   },
   "extends": [
     "eslint:recommended", 
