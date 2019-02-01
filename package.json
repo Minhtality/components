@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "start-storybook -p 9001 -c .storybook",
-    "storybookIntegration": "start-storybook --ci -p 9009 -s public",
+    "storybookIntegration": "start-storybook --ci -p 9009 -s public -c .storybook",
     "build": "webpack",
     "test": "yarn testSingle 'tests/**/*.js' | faucet",
     "testSingle": "NODE_ENV=test tape -r @babel/register -r ./utils-for-tests/configureEnzyme.js -r jsdom-global/register -r ignore-styles",
