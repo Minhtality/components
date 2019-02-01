@@ -53,7 +53,7 @@ jobs:
       - deploy:
           name: Publish to NPM
           command: |
-            if [ "${CIRCLE_BRANCH}" == "v1.1" ]; then
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
               npm version patch -m "Bumping up version to %s [skip ci]"
               npm publish
               git push --set-upstream origin $CIRCLE_BRANCH
