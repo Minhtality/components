@@ -39,7 +39,7 @@ jobs:
 
       - store_artifacts:
           name: Saving visual regression snapshots
-          path: ~/integration/__image_snapshots__
+          path: ./integration/__image_snapshots__
 
       - run:
           name: Configure Git
