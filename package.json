@@ -17,8 +17,8 @@
     "test:integration": "start-server-and-test storybook http-get://localhost:9009 jest:integration",
     "buildStorybook": "build-storybook -c .storybook -o .build",
     "publishStorybook": "yarn buildStorybook && ./publishStorybook.sh",
-    "lint": "eslint './stories/**/*.js' './components/**/*.js' --cache && sass-lint 'component/**/*.sass' -qv && prettier -l './components/**/*.js' && prettier -l './components/**/*.scss' --parser=css || (echo need formatting, use yarn format ; exit 1)",
-    "format": "prettier --write './components/**/*.js' './stories/**/*.js' && prettier --write './components/**/*.scss' --parser=css"
+    "lint": "eslint './integration/*.js' 'tests/**/*.js' './stories/**/*.js' './components/**/*.js' --cache && sass-lint 'component/**/*.sass' -qv && prettier -l './components/**/*.js' && prettier -l './components/**/*.scss' --parser=css || (echo need formatting, use yarn format ; exit 1)",
+    "format": "prettier --write './tests/**/*.js' './integration/*.js' './components/**/*.js' './stories/**/*.js' && prettier --write './components/**/*.scss' --parser=css"
   },
   "homepage": "https://github.com/UnitedIncome/component",
   "repository": {
@@ -51,6 +51,11 @@
     "eslint-plugin-react": "*",
     "faucet": "*",
     "ignore-styles": "*",
+    "jest": "^24.0.0",
+    "jest-image-snapshot": "^2.7.0",
+    "jest-puppeteer": "^3.9.0",
+    "puppeteer": "^1.12.0",
+    "start-server-and-test": "^1.7.11",
     "jsdom": "*",
     "jsdom-global": "*",
     "mini-css-extract-plugin": "*",
@@ -76,12 +81,5 @@
     "react": "*",
     "react-dom": "*",
     "react-router": "3"
-  },
-  "dependencies": {
-    "jest": "^24.0.0",
-    "jest-image-snapshot": "^2.7.0",
-    "jest-puppeteer": "^3.9.0",
-    "puppeteer": "^1.12.0",
-    "start-server-and-test": "^1.7.11"
   }
 }
