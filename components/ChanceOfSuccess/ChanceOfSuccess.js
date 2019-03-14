@@ -115,6 +115,7 @@ const ChanceOfSuccess = (props) => {
   const circleRange = 130;
   const circleEndFrame = Math.round(percent * 2.6 - circleRange);
 
+
   // For arcs, the coordinate system has 0 at 12 o'clock and pi at 6 o'clock
   // For sin/cos 0 is at 3 o'clock and pi is at 9 o'clock
   // So, must rotate a g element containing the indicator circle
@@ -128,25 +129,16 @@ const ChanceOfSuccess = (props) => {
           fill: #B30052
         }
         
-        20% {
+        25% {
           fill: #b34d00;
         }
       
-        40% {
+        50% {
           fill: #c76501;
-        }
-      
-        60% {
-          fill: #ed9403;
-        }
-      
-        80% {
-          fill: #6bb508;
         }
       
         100% {
           transform: rotate(${circleEndFrame}deg);
-          fill: $safe-green;
         }
       }
       `}

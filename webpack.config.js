@@ -12,6 +12,16 @@ const entries = glob
 
 entries.index = path.resolve(__dirname, 'components/index.js');
 
+module.exports = function (baseConfig, env, defaultConfig) {
+  defaultConfig.module.rules.push({
+    test: /\.stories\.jsx?$/,
+    loaders: [require.resolve('@storybook/addon-storysource/loader')],
+    enforce: 'pre',
+  });
+
+  return defaultConfig;
+};
+
 module.exports = {
   mode: 'production',
   entry: entries,
