@@ -119,6 +119,45 @@ test('Navbar - toggleActive', (t) => {
   t.end();
 });
 
+test('Navbar - onAnimationEnd', (t) => {
+  window.requestAnimationFrame = stub();
+  const props = {
+    isFixed: false,
+    isStatic: false,
+    transitionToFixed: 100,
+    isOpen: true,
+    logoLink: 'https://unitedincome.com',
+    leftNavigation: [
+      {
+        label: 'Login',
+        link: '#',
+        hideFixed: true,
+      },
+      {
+        label: 'Join us Today',
+        link: '#',
+        variant: 'secondary',
+        hideStatic: true,
+      },
+    ],
+    linkComponent: 'a',
+  };
+
+  const component = mount(<Navbar {...props} />);
+
+  t.equals(component.state().animationEnded, false, 'Should default to false.');
+
+  component.instance().onAnimationEnd();
+
+  t.equals(
+    component.state().animationEnded,
+    true,
+    'Should toggle the animation to ended.'
+  );
+
+  t.end();
+});
+
 test('Navbar - generateNavigation', (t) => {
   window.requestAnimationFrame = stub();
   const props = {

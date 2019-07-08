@@ -16,6 +16,7 @@ class Navbar extends PureComponent {
     super(props);
 
     this.state = {
+      animationEnded: false,
       open: props.isOpen,
       fixed: props.isFixed,
       active: props.activeLink,
@@ -24,6 +25,7 @@ class Navbar extends PureComponent {
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.toggleFixed = this.toggleFixed.bind(this);
     this.toggleActive = this.toggleActive.bind(this);
+    this.onAnimationEnd = this.onAnimationEnd.bind(this);
   }
 
   /** @inheritdoc */
@@ -38,6 +40,14 @@ class Navbar extends PureComponent {
     if (window) {
       window.removeEventListener('scroll', this.toggleFixed);
     }
+  }
+
+  /**
+   * Run on end of animation to add animation ended class and specify animations have been run.
+   * @returns {undefined}
+   */
+  onAnimationEnd() {
+    this.setState({animationEnded: !this.state.animationEnded});
   }
 
   /** Closes the navigation bar on active toggle.
@@ -162,7 +172,7 @@ class Navbar extends PureComponent {
       style,
     } = this.props;
 
-    const {fixed, open} = this.state;
+    const {fixed, open, animationEnded} = this.state;
 
     const containerClasses = classNames(
       {
@@ -175,6 +185,14 @@ class Navbar extends PureComponent {
       },
       className
     );
+
+    const mobileContainerClasses = classNames({
+      'uic--navbar__mobile-drawer-wrapper': true,
+      'uic--position-fixed': true,
+      'uic--w-100': true,
+      'uic--h-100': true,
+      'uic--d-none': !open && !animationEnded,
+    });
 
     const IconComponent = open ? CloseIcon : HamburgerIcon;
     const renderLeftNavigation = leftNavigation
@@ -230,8 +248,12 @@ class Navbar extends PureComponent {
               fill={fixed ? colors['white'] : colors['slate']}
             />
           </div>
-          <div className="uic--navbar__mobile-drawer-wrapper uic--position-fixed uic--w-100 uic--h-100">
-            <Spring native to={{start: open ? 100 : 0}}>
+          <div className={mobileContainerClasses}>
+            <Spring
+              native
+              to={{start: open ? 100 : 0}}
+              onRest={this.onAnimationEnd}
+            >
               {({start}) => (
                 <animated.div
                   className="uic--navbar__mobile-drawer-inner"
