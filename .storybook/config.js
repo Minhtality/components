@@ -7,7 +7,7 @@ import {colors} from '~constants/js/colors';
 import {State} from '@sambego/storybook-state';
 import '../constants/sass/util/prefixed-utils.scss';
 
-const req = require.context('../components', true, /story\.js$/);
+const req = require.context('../components', true, /story\.(js|mdx)$/);
 
 // Registers global decorators.
 addDecorator(

@@ -38,6 +38,7 @@
     "@sambego/storybook-state": "*",
     "@storybook/addon-a11y": "*",
     "@storybook/addon-backgrounds": "*",
+    "@storybook/addon-docs": "*",
     "@storybook/addon-info": "*",
     "@storybook/addon-knobs": "*",
     "@storybook/addon-viewport": "*",
