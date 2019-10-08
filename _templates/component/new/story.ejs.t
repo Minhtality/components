@@ -4,34 +4,62 @@ to: components/<%= compPath %>/<%= h.changeCase.pascal(name) %>/<%= h.changeCase
 <%
   compName = h.changeCase.pascal(name)
 -%>
-import React from 'react';
 <% if (isStateful) { -%>
 import {StateDecorator, Store} from '@sambego/storybook-state';
-import {storiesOf, forceReRender} from '@storybook/react';
 <% } else {-%>
-import {storiesOf} from '@storybook/react';
 <% } -%>
-import {withReadme} from 'storybook-readme';
 import <%= compName %> from './<%= compName %>';
-import <%= compName %>ReadMe from './<%= compName %>.md';
-
-const stories = storiesOf('<%= storyPath %>/<%= compName %>', module);
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 
 <% if (isStateful) { -%>
-const store = new Store({});
-
-store.subscribe(() => {
-  forceReRender();
-});
-
+export const store = new Store({});
 <% }-%>
-stories.addDecorator(withReadme(<%= compName %>ReadMe));
 
-const defaultProps = () => ({
+export const defaultProps = () => ({
   // Add props that the component uses with the appropriate storybook knob
   // https://stackoverflow.com/c/unitedincome/questions/136
 });
 
-stories.add('default', () => <<%= compName %> {...defaultProps()} />);
+<Meta 
+  title="<%= storyPath %>/<%= compName %>"
+  component={<%= compName %>}
+  <% if (isStateful) { -%>
+  decorators={[
+    StateDecorator(store)
+  ]} 
+  <% }-%>
+/>
 
-// Add more stories: https://stackoverflow.com/c/unitedincome/questions/140
+# <%= compName %>
+
+<%= description %>
+
+## Importing 📦
+
+You can use this component using one of the following import patterns.
+
+```javascript
+import <%= compName %> from '@unitedincome/components/dist/<%= compName %>'
+```
+
+```javascript
+import {<%= compName %>} from '@unitedincome/components'
+```
+
+## Example 🚀
+
+```javascript
+<<%= compName %> />
+```
+
+<Preview>
+  <Story name="default">
+    <<%= compName %>
+      {...defaultProps()} 
+    />
+  </Story>
+</Preview>
+
+## Props 🔧
+
+<Props of={<%= compName %>} />

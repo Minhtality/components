@@ -1,9 +1,68 @@
 
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import Box from './Box';
+import {storiesOf} from '@storybook/react';
+import {boolean, text} from '@storybook/addon-knobs';
+import CarCircleIllustration from '~components/atoms/illustrations/CarCircleIllustration/CarCircleIllustration';
 
-<Meta title="Demo/Badge" component={Box} />
+export const defaultProps = (selected) => ({
+  selected: boolean('selected', selected),
+  label: text('label', 'Essentials'),
+  description: text(
+    'description',
+    'These are the basics: paying the bills and putting food on the table. They include your non-discretionary spending.'
+  ),
+});
+
+<Meta title="Atoms/Box" component={Box} />
 
 # Box
 
-Just testing to ensure this builds.
+Displays content within a simple box with an icon, title, and description.
+
+## Importing 📦
+
+You can use this component using one of the following import patterns.
+
+```javascript
+import Box from '@unitedincome/components/dist/Box';
+```
+
+```javascript
+import {Box} from '@unitedincome/components';
+```
+
+## Example 🚀
+
+```javascript
+<Box
+  label="Montezuma the Cat"
+  description="Montezuma is honestly the best cat I've ever seen."
+  icon={CatIllustration}
+/>
+```
+
+<Preview>
+  <Story name="default">
+    <Box
+      {...defaultProps(false)}
+    />
+  </Story>
+</Preview>
+
+### Using an Icon
+
+You can include an icon or illustration at the top of the box by passing it in using the `icon` prop. When the `selected` prop is set to `true` the box will also pass the value to the `illuminate` prop on the icon component, which will trigger the activated state for most of the illustrations found in this library.
+
+<Preview>
+  <Story name="selected">
+    <Box
+      {...defaultProps(true)}
+      icon={CarCircleIllustration}
+    />
+  </Story>
+</Preview>
+
+## Props 🔧
+
+<Props of={Box} />

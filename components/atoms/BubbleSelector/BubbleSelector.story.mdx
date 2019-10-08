@@ -1,0 +1,77 @@
+import {storiesOf, forceReRender} from '@storybook/react';
+import {object, text} from '@storybook/addon-knobs';
+import {StateDecorator, Store} from '@sambego/storybook-state';
+import BubbleSelector from './BubbleSelector';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+
+export const store = new Store({value: 'there'});
+
+export const defaultProps = ({
+  options = [
+    {value: 'Hi', color: 'Green'},
+    {value: 'there', color: 'Blue'},
+    {value: 'son'},
+  ],
+  fixedWidth = '',
+}) => ({
+  options: object('Options', options),
+  value: store.get('value'),
+  onChange: (newValue) => store.set({value: newValue}),
+  fixedWidth: text('Fixed Width', fixedWidth),
+});
+
+<Meta 
+  title="Atoms/BubbleSelector"
+  component={BubbleSelector}
+  decorators={[
+    StateDecorator(store)
+  ]} />
+
+# BubbleSelector
+
+The BubbleSelector component renders a horizontal item selector in a bubble style.
+
+## Importing 📦
+
+You can use this component using one of the following import patterns.
+
+```javascript
+import BubbleSelector from '@unitedincome/components/dist/BubbleSelector';
+```
+
+```javascript
+import {BubbleSelector} from '@unitedincome/components';
+```
+
+## Example 🚀
+
+```javascript
+<BubbleSelector
+  options={[
+    {value: 'montezuma1'},
+    {value: 'montezuma2', color: 'Blue'},
+    {value: 'montezuma3', color: 'Red'},
+  ]}
+  value={this.state.bestCat}
+  onChange={(value) => this.setState({val: value})}
+/>
+```
+<Preview>
+  <Story name="dynamic width">
+    <BubbleSelector {...defaultProps({})} />
+  </Story>
+</Preview>
+
+You can apply a fixed width to the component using the `fixedWidth` prop.
+
+<Preview>
+  <Story name="fixed width">
+    <BubbleSelector 
+      {...defaultProps({fixedWidth: '17rem'})} 
+    />
+  </Story>
+</Preview>
+
+## Props 🔧
+
+<Props of={BubbleSelector} />
