@@ -2,9 +2,9 @@ import {storiesOf, forceReRender} from '@storybook/react';
 import {object} from '@storybook/addon-knobs';
 import {StateDecorator, Store} from '@sambego/storybook-state';
 import BubbleDropdown from './BubbleDropdown';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import {Meta, Story, Preview, Props} from '@storybook/addon-docs/blocks';
 
-export const store = new Store({value: 'Small'})
+export const store = new Store({value: 'Small'});
 
 export const defaultProps = (
   options = [{value: 'Big', color: 'Red'}, {value: 'Small'}]
@@ -14,12 +14,11 @@ export const defaultProps = (
   onChange: (newValue) => store.set({value: newValue}),
 });
 
-<Meta 
+<Meta
   title="Atoms/BubbleDropdown"
   component={BubbleDropdown}
-  decorators={[
-    StateDecorator(store)
-  ]} />
+  decorators={[StateDecorator(store)]}
+/>
 
 # BubbleDropdown
 
@@ -53,9 +52,7 @@ import {BubbleDropdown} from '@unitedincome/components';
 
 <Preview>
   <Story name="default">
-    <BubbleDropdown
-      {...defaultProps()}
-    />
+    <BubbleDropdown {...defaultProps()} />
   </Story>
 </Preview>
 

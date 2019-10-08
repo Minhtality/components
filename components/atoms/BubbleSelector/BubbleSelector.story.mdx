@@ -2,7 +2,7 @@ import {storiesOf, forceReRender} from '@storybook/react';
 import {object, text} from '@storybook/addon-knobs';
 import {StateDecorator, Store} from '@sambego/storybook-state';
 import BubbleSelector from './BubbleSelector';
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import {Meta, Story, Preview, Props} from '@storybook/addon-docs/blocks';
 
 export const store = new Store({value: 'there'});
 
@@ -20,12 +20,11 @@ export const defaultProps = ({
   fixedWidth: text('Fixed Width', fixedWidth),
 });
 
-<Meta 
+<Meta
   title="Atoms/BubbleSelector"
   component={BubbleSelector}
-  decorators={[
-    StateDecorator(store)
-  ]} />
+  decorators={[StateDecorator(store)]}
+/>
 
 # BubbleSelector
 
@@ -56,6 +55,7 @@ import {BubbleSelector} from '@unitedincome/components';
   onChange={(value) => this.setState({val: value})}
 />
 ```
+
 <Preview>
   <Story name="dynamic width">
     <BubbleSelector {...defaultProps({})} />
@@ -66,9 +66,7 @@ You can apply a fixed width to the component using the `fixedWidth` prop.
 
 <Preview>
   <Story name="fixed width">
-    <BubbleSelector 
-      {...defaultProps({fixedWidth: '17rem'})} 
-    />
+    <BubbleSelector {...defaultProps({fixedWidth: '17rem'})} />
   </Story>
 </Preview>
 
