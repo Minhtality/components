@@ -2,7 +2,7 @@
 import {and, or} from 'airbnb-prop-types';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, {Fragment, forwardRef} from 'react';
+import React, {forwardRef, Fragment} from 'react';
 import requiredIf from 'react-required-if';
 import Spinner from '~components/atoms/Spinner/Spinner';
 import {colors} from '~constants/js/colors';
