@@ -1,5 +1,5 @@
 import {mount} from 'enzyme';
-import React from 'react';
+import React, {createRef} from 'react';
 import test from 'tape';
 import TrashIcon from '~components/atoms/icons/TrashIcon/TrashIcon';
 import {colors} from '~constants/js/colors';
@@ -25,12 +25,12 @@ test('Button - rendering with a linkComponent prop', (t) => {
   t.plan(1);
 
   const linkComponent = mount(
-    <Button to="/url" linkComponent={Button}>
+    <Button to="/place" linkComponent={Button}>
       Testing
     </Button>,
   );
 
-  t.equal(linkComponent.find('Button').length, 2, 'should render as a Link');
+  t.equal(linkComponent.find(Button).length, 2, 'should render as a Link');
 });
 
 test('Button - disabling', (t) => {

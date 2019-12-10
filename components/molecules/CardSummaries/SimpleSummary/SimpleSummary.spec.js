@@ -2,6 +2,7 @@ import {mount} from 'enzyme';
 import React from 'react';
 import test from 'tape';
 import SimpleSummary from './SimpleSummary';
+import Button from '~components/atoms/Button/Button';
 
 test('SimpleSummary - Renders', (t) => {
   const component = mount(
@@ -13,7 +14,7 @@ test('SimpleSummary - Renders', (t) => {
 
   t.equals(component.find('p').length, 2, 'Displays both answers');
 
-  t.equals(component.find('Button').text(), 'Edit', 'Edit button is displayed');
+  t.equals(component.find(Button).text(), 'Edit', 'Edit button is displayed');
 
   t.end();
 });
@@ -29,7 +30,7 @@ test('SimpleSummary - Renders with customized link', (t) => {
   );
 
   t.equals(
-    component.find('Button').text(),
+    component.find(Button).text(),
     editCardText,
     'Modified edit text is displayed',
   );

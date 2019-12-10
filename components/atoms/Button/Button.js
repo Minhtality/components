@@ -2,7 +2,7 @@
 import {and, or} from 'airbnb-prop-types';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, {Fragment} from 'react';
+import React, {Fragment, forwardRef} from 'react';
 import requiredIf from 'react-required-if';
 import Spinner from '~components/atoms/Spinner/Spinner';
 import {colors} from '~constants/js/colors';
@@ -45,68 +45,94 @@ ButtonInterior.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const Button = ({
-  children,
-  className,
-  dark,
-  disabled,
-  isLoading,
-  light,
-  linkComponent,
-  onClick,
-  to,
-  type,
-  variant,
-  ...props
-}) => {
-  const btnClass = classNames(
+const Button = forwardRef(
+  (
     {
-      btn: true,
-      'uic--position-relative': true,
-      [`btn-${variant}`]: variant,
-      'on-light': light,
-      'on-dark': dark,
-      'show-spinner': isLoading,
-      'hide-spinner': !isLoading,
-    },
-    className,
-  );
-
-  let spinnerColor;
-
-  if (variant === 'icon' || variant === 'link') {
-    spinnerColor = dark ? colors.white : colors['royal'];
-  } else if (variant === 'secondary' && dark) {
-    spinnerColor = colors['super-dark'];
-  } else if (variant === 'tertiary' && light) {
-    spinnerColor = colors['royal'];
-  } else {
-    spinnerColor = colors.white;
-  }
-
-  const spinnerSize = variant === 'primary' || variant === 'icon' ? '23' : '19';
-
-  if (to) {
-    const linkClass = classNames(btnClass, {
+      children,
+      className,
+      dark,
       disabled,
-    });
+      isLoading,
+      light,
+      linkComponent,
+      onClick,
+      to,
+      type,
+      variant,
+      ...props
+    },
+    ref,
+  ) => {
+    const btnClass = classNames(
+      {
+        btn: true,
+        'uic--position-relative': true,
+        [`btn-${variant}`]: variant,
+        'on-light': light,
+        'on-dark': dark,
+        'show-spinner': isLoading,
+        'hide-spinner': !isLoading,
+      },
+      className,
+    );
 
-    const linkProps = {
-      ...props,
-    };
+    let spinnerColor;
 
-    // Switches the link wrapper to the one provided via props if available.
-    let LinkWrapper;
-    if (linkComponent && linkComponent !== 'a') {
-      LinkWrapper = linkComponent;
-      linkProps.to = to;
+    if (variant === 'icon' || variant === 'link') {
+      spinnerColor = dark ? colors.white : colors['royal'];
+    } else if (variant === 'secondary' && dark) {
+      spinnerColor = colors['super-dark'];
+    } else if (variant === 'tertiary' && light) {
+      spinnerColor = colors['royal'];
     } else {
-      LinkWrapper = 'a';
-      linkProps.href = to;
+      spinnerColor = colors.white;
+    }
+
+    const spinnerSize =
+      variant === 'primary' || variant === 'icon' ? '23' : '19';
+
+    if (to) {
+      const linkClass = classNames(btnClass, {
+        disabled,
+      });
+
+      const linkProps = {
+        ...props,
+        ref,
+      };
+
+      // Switches the link wrapper to the one provided via props if available.
+      let LinkWrapper;
+      if (linkComponent && linkComponent !== 'a') {
+        LinkWrapper = linkComponent;
+        linkProps.to = to;
+      } else {
+        LinkWrapper = 'a';
+        linkProps.href = to;
+      }
+
+      return (
+        <LinkWrapper className={linkClass} {...linkProps}>
+          <ButtonInterior
+            showSpinner={isLoading}
+            spinnerSize={spinnerSize}
+            spinnerColor={spinnerColor}
+          >
+            {children}
+          </ButtonInterior>
+        </LinkWrapper>
+      );
     }
 
     return (
-      <LinkWrapper className={linkClass} {...linkProps}>
+      <button
+        type={type}
+        className={btnClass}
+        onClick={onClick}
+        disabled={disabled}
+        ref={ref}
+        {...props}
+      >
         <ButtonInterior
           showSpinner={isLoading}
           spinnerSize={spinnerSize}
@@ -114,28 +140,10 @@ const Button = ({
         >
           {children}
         </ButtonInterior>
-      </LinkWrapper>
+      </button>
     );
-  }
-
-  return (
-    <button
-      type={type}
-      className={btnClass}
-      onClick={onClick}
-      disabled={disabled}
-      {...props}
-    >
-      <ButtonInterior
-        showSpinner={isLoading}
-        spinnerSize={spinnerSize}
-        spinnerColor={spinnerColor}
-      >
-        {children}
-      </ButtonInterior>
-    </button>
-  );
-};
+  },
+);
 
 Button.propTypes = {
   /** Optional button component, allowing you to wrap the button in things such as react-router-dom's Link. */
@@ -182,6 +190,8 @@ Button.propTypes = {
     PropTypes.string,
     requiredIf(PropTypes.string, (props) => props.variant === 'icon'),
   ]),
+  /** Allows a ref to be passed down to the button container. */
+  forwardedRef: PropTypes.objectOf(PropTypes.any),
 };
 
 Button.defaultProps = {

@@ -5,6 +5,7 @@ import test from 'tape';
 import DropDown from '~components/atoms/DropDown/DropDown';
 import Input from '~components/atoms/Input/Input';
 import Slider from '~components/atoms/Slider/Slider';
+import Button from '~components/atoms/Button/Button';
 import Checkboxes from '~components/molecules/Checkboxes/Checkboxes';
 import RadioButtons from '~components/molecules/RadioButtons/RadioButtons';
 import * as DateUtils from '~components/utilities/DateUtils/DateUtils';
@@ -43,7 +44,7 @@ test('CardShell - active', (t) => {
   );
 
   t.equals(comp.find('p').length, 2, 'Shows before and after content');
-  t.equals(comp.find('Button').length, 1, 'Shows button');
+  t.equals(comp.find(Button).length, 1, 'Shows button');
 
   comp.instance().onSubmit({preventDefault: stub()});
 
@@ -715,7 +716,7 @@ test('CardShell - validates different input constraints', (t) => {
       <CardShell {...defaultProps}>{getInput(badValues, i)}</CardShell>,
     );
     t.true(
-      component.find('Button').props().disabled,
+      component.find(Button).props().disabled,
       `Should disable button for input ${i + 1}`,
     );
   }
@@ -725,7 +726,7 @@ test('CardShell - validates different input constraints', (t) => {
       <CardShell {...defaultProps}>{getInput(goodValues, i)}</CardShell>,
     );
     t.false(
-      component.find('Button').props().disabled,
+      component.find(Button).props().disabled,
       `Should enable button for input ${i + 1}`,
     );
   }
