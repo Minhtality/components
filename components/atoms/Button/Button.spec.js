@@ -1,5 +1,5 @@
 import {mount} from 'enzyme';
-import React, {createRef} from 'react';
+import React from 'react';
 import test from 'tape';
 import TrashIcon from '~components/atoms/icons/TrashIcon/TrashIcon';
 import {colors} from '~constants/js/colors';
