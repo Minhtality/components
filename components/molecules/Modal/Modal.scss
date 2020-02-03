@@ -51,7 +51,7 @@ $modal-backdrop: rgba(0, 0, 0, 0.85);
         h2 {
           @include source-sans-pro(2rem);
           color: $midnight;
-          font-weight: normal;
+          font-weight: 300;
           margin: 1.6rem 0 2.8rem;
         }
 

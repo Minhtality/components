@@ -101,9 +101,11 @@ $active-border-size: 4px;
 
   h2 {
     @extend %uic--mcg-question-text;
+    font-weight: 600;
   }
 
   h3 {
     @extend %uic--mcg-subhead-text;
+    font-weight: 600;
   }
 }
