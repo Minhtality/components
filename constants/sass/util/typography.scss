@@ -1,3 +1,62 @@
+@font-face {
+  font-family: Optimist;
+  font-style: normal;
+  font-weight: 100;
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_XLt.eot');
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_XLt.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_XLt.woff2')
+      format('woff2'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_XLt.woff')
+      format('woff'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_XLt.ttf')
+      format('truetype');
+}
+
+@font-face {
+  font-family: Optimist;
+  font-style: normal;
+  font-weight: 300;
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Lt.eot');
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Lt.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Lt.woff2')
+      format('woff2'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Lt.woff')
+      format('woff'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Lt.ttf')
+      format('truetype');
+}
+
+@font-face {
+  font-family: Optimist;
+  font-style: normal;
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Rg.eot');
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Rg.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Rg.woff2')
+      format('woff2'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Rg.woff')
+      format('woff'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_Rg.ttf')
+      format('truetype');
+}
+
+@font-face {
+  font-family: Optimist;
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_SBd.eot');
+  src: url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_SBd.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_SBd.woff2')
+      format('woff2'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_SBd.woff')
+      format('woff'),
+    url('https://www.capitalone.com/assets/enterprise/fonts/Optimist_W_SBd.ttf')
+      format('truetype');
+}
+
 .uic--header-1-text,
 %uic--header-1-text {
   @include media-breakpoint-up(lg) {
