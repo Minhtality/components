@@ -1,4 +1,4 @@
-name: deployment-dev
+name: deployment-optimist
 on:
   push:
     branches:
