@@ -65,17 +65,18 @@ class QuestionAnswer extends PureComponent {
 
           <div className="uic--question-answer__qa uic--col-12 uic--col-md-6">
             <div className="uic--question-answer__qa-wrapper">
-              {items.map(({question, answer}, i) => {
+              {items.map(({question, answer}, index) => {
                 return (
                   <div
-                    key={this.state.idArray[i]}
+                    key={this.state.idArray[index]}
                     className="uic--question-answer__qa-wrapper-question"
                     role="menu"
                   >
                     <ExpandCollapse
-                      name={`item-${this.state.idArray[i]}`}
+                      name={`item-${this.state.idArray[index]}`}
                       open={
-                        `item-${this.state.idArray[i]}` === this.state.expanded
+                        `item-${this.state.idArray[index]}` ===
+                        this.state.expanded
                       }
                       onClick={this.setExpanded}
                       label={question}
