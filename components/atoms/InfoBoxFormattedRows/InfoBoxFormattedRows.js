@@ -1,5 +1,6 @@
 /** @module InfoBoxFormattedRows */
 import PropTypes from 'prop-types';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import React from 'react';
 
 /**
@@ -11,14 +12,12 @@ import React from 'react';
  */
 const InfoBoxFormattedRows = (props) => {
   const {rowData, className, style} = props;
+  const idArray = createUniqueIdArray(rowData.length);
 
   return (
     <ul className={className} style={style}>
-      {rowData.map((row) => (
-        <li
-          className="uic--info-box-formatted-row"
-          key={row.key ? row.key : row.label}
-        >
+      {rowData.map((row, index) => (
+        <li className="uic--info-box-formatted-row" key={idArray[index]}>
           <div className="uic--row-label">{row.label}</div>
           <div className="uic--mcg-subhead-text">{row.value}</div>
         </li>
@@ -31,8 +30,6 @@ InfoBoxFormattedRows.propTypes = {
   /** Data that will displayed as formatted rows in our InfoBox. */
   rowData: PropTypes.arrayOf(
     PropTypes.shape({
-      /** Optional unique key for a row of data. */
-      key: PropTypes.string,
       /** Label that will be displayed on the left side of the row. */
       label: PropTypes.string.isRequired,
       /** Value that will be displayed on the right side of the row. */

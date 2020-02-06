@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {DragDropContext, Draggable, Droppable} from 'react-beautiful-dnd';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import ArrowEllipsisIcon from '~components/atoms/icons/ArrowEllipsisIcon/ArrowEllipsisIcon';
 import {colors} from '~constants/js/colors';
 import './Ranking.scss';
@@ -15,6 +16,7 @@ class Ranking extends Component {
 
     this.state = {
       items: props.items,
+      idArray: createUniqueIdArray(props.items.length),
     };
 
     this.changeOrder = this.changeOrder.bind(this);
@@ -75,7 +77,7 @@ class Ranking extends Component {
               >
                 {items.map((item, index) => (
                   <Draggable
-                    key={item.id}
+                    key={this.state.idArray[index]}
                     draggableId={item.id}
                     index={index}
                     isDragDisabled={!item.movable}
@@ -105,7 +107,7 @@ class Ranking extends Component {
 
                       return (
                         <li
-                          key={index}
+                          key={this.state.idArray[index]}
                           tabIndex={index + 1}
                           ref={draggableProvided.innerRef}
                           {...draggableProvided.draggableProps}

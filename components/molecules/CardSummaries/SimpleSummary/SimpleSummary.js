@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Button from '~components/atoms/Button/Button';
 import {exclusive} from '~proptypes';
+import {createUniqueIdArray} from '../../../../constants/js/utils';
 import '../CardSummaries.scss';
 
 const SimpleSummary = ({shortTitle, editCard, editCardText, answers, to}) => {
+  const idArray = createUniqueIdArray(answers.length);
+
   return (
     <div className="uic--card-summary uic--container-fluid">
       <div className="uic--row">
@@ -21,9 +24,9 @@ const SimpleSummary = ({shortTitle, editCard, editCardText, answers, to}) => {
           </div>
         </div>
         <div className="uic--col-12 uic--col-sm-5">
-          {answers.map((answer) => {
+          {answers.map((answer, index) => {
             return (
-              <p key={answer} className="uic--card-summary-answer">
+              <p key={idArray[index]} className="uic--card-summary-answer">
                 {answer}
               </p>
             );

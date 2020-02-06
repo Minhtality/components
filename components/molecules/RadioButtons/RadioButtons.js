@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import OptionBox from '~components/atoms/OptionBox/OptionBox';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './RadioButtons.scss';
 
 const RadioButtons = ({
@@ -28,10 +29,12 @@ const RadioButtons = ({
     'uic--w-100': true,
   });
 
+  const idArray = createUniqueIdArray(options.length);
+
   return (
     <fieldset role="group" className={containerClasses} required={required}>
       <legend className={legendClasses}>
-        {options.map((option) => {
+        {options.map((option, index) => {
           const labelClasses = classNames({
             'uic--d-flex': true,
             'uic--align-center': true,
@@ -63,7 +66,7 @@ const RadioButtons = ({
           }
 
           return (
-            <div className={radioButtonClasses} key={option.value}>
+            <div className={radioButtonClasses} key={idArray[index]}>
               <label className={labelClasses}>
                 <span className={labelWrapper}>
                   <input

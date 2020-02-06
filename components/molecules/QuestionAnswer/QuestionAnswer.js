@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, {PureComponent} from 'react';
 import ExpandCollapse from '~components/atoms/ExpandCollapse/ExpandCollapse';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './QuestionAnswer.scss';
 
 /** Displays a group of frequently asked questions in a list.
@@ -16,6 +17,7 @@ class QuestionAnswer extends PureComponent {
 
     this.state = {
       expanded: null,
+      idArray: createUniqueIdArray(props.items.length),
     };
 
     this.setExpanded = this.setExpanded.bind(this);
@@ -63,22 +65,26 @@ class QuestionAnswer extends PureComponent {
 
           <div className="uic--question-answer__qa uic--col-12 uic--col-md-6">
             <div className="uic--question-answer__qa-wrapper">
-              {items.map(({question, answer}, index) => (
-                <div
-                  key={index}
-                  className="uic--question-answer__qa-wrapper-question"
-                  role="menu"
-                >
-                  <ExpandCollapse
-                    name={`item-${index}`}
-                    open={`item-${index}` === this.state.expanded}
-                    onClick={this.setExpanded}
-                    label={question}
+              {items.map(({question, answer}, i) => {
+                return (
+                  <div
+                    key={this.state.idArray[i]}
+                    className="uic--question-answer__qa-wrapper-question"
+                    role="menu"
                   >
-                    {answer}
-                  </ExpandCollapse>
-                </div>
-              ))}
+                    <ExpandCollapse
+                      name={`item-${this.state.idArray[i]}`}
+                      open={
+                        `item-${this.state.idArray[i]}` === this.state.expanded
+                      }
+                      onClick={this.setExpanded}
+                      label={question}
+                    >
+                      {answer}
+                    </ExpandCollapse>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

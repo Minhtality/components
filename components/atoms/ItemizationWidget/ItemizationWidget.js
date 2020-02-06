@@ -8,6 +8,7 @@ import TooltipInput from '~components/molecules/TooltipInput/TooltipInput';
 import {isDocumentDefined} from '~components/utilities/DetectBrowser/DetectBrowser';
 import {formatCurrencyNoDecimal} from '~components/utilities/FormatUtils/FormatUtils';
 import {exclusive} from '~proptypes';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './ItemizationWidget.scss';
 
 /** Renders the ItemizationWidget component. */
@@ -20,6 +21,7 @@ class ItemizationWidget extends PureComponent {
       open: false,
       warning: false,
       thresholdWarning: '',
+      idArray: createUniqueIdArray(props.values.length),
     };
 
     this.determineError = this.determineError.bind(this);
@@ -197,7 +199,10 @@ class ItemizationWidget extends PureComponent {
                             (items ? this.sumTotal(items) : value) >= threshold,
                         });
                         return (
-                          <div key={index} className={itemClasses}>
+                          <div
+                            key={this.state.idArray[index]}
+                            className={itemClasses}
+                          >
                             {formatCurrencyNoDecimal(
                               items ? this.sumTotal(items) : value || 0,
                             )}
@@ -226,7 +231,7 @@ class ItemizationWidget extends PureComponent {
                               <div className="uic--itemization-widget__itemized-container">
                                 {items.map((item, idx) => (
                                   <div
-                                    key={idx}
+                                    key={this.state.idArray[idx]}
                                     className="uic--itemization-widget__itemized"
                                   >
                                     <div className="uic--itemization-widget__itemized-value">

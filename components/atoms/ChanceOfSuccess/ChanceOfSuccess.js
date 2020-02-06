@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import React, {Fragment} from 'react';
 import detectBrowser from '~components/utilities/DetectBrowser/DetectBrowser';
 import {colors} from '~constants/js/colors';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './ChanceOfSuccess.scss';
 
 /** Accepts a percent and returns a string representing how high your chance of success is.
@@ -84,6 +85,7 @@ const ChanceOfSuccess = (props) => {
 
   const step = (max - min) / numPaths;
   const percentageRange = Array.from({length: numPaths}, (v, i) => i * step);
+  const idArray = createUniqueIdArray(percentageRange.length);
 
   const circleTheta = angleScale(50);
   const arcRadiusForCircle = radius - thickness / 2;
@@ -206,7 +208,7 @@ const ChanceOfSuccess = (props) => {
                 : value + step + step / 2;
             return (
               <path
-                key={value}
+                key={idArray[index]}
                 d={arc({
                   startAngle: angleScale(value),
                   endAngle: angleScale(endDomainValue),

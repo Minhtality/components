@@ -24,10 +24,9 @@ test('InfoBoxFormattedRows - renders correctly', (t) => {
     testProps.rowData.length,
     'Should render the correct number of rows',
   );
-  t.equal(
+  t.true(
     component.find('.uic--info-box-formatted-row').get(0).key,
-    component.find('.uic--row-label').get(0).props.children,
-    'Key and label should be equal when no keys are passed',
+    'Key should be created on our behalf',
   );
 
   const keyProps = {

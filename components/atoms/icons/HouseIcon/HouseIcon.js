@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {colors} from '~constants/js/colors';
+import {createUniqueIdArray} from '../../../../constants/js/utils';
 import detectBrowser from '~components/utilities/DetectBrowser/DetectBrowser';
 
 /** Displays the HouseIcon component.
@@ -26,7 +27,9 @@ const HouseIcon = ({
     className,
   );
 
-  return [...Array(houses).keys()].map((item, i) => {
+  const idArray = createUniqueIdArray(houses);
+
+  return [...Array(houses).keys()].map((item, index) => {
     return (
       <div
         className={containerClasses}
@@ -35,19 +38,19 @@ const HouseIcon = ({
           height,
           ...style,
         }}
-        key={`${id}-${i}`}
+        key={idArray[index]}
       >
         <svg viewBox="0 0 30 30" preserveAspectRatio="none">
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             {(item < highlight - 1 || item === highlight - 1) && !isIE && (
-              <linearGradient id={`${id}-${i}`} x2="0" y1="0" y2="1">
+              <linearGradient id={`${id}-${index}`} x2="0" y1="0" y2="1">
                 <stop offset="0%" stopColor={colors['light-gray']} />
                 <stop offset="100%" stopColor={colors['light-gray']}>
                   <animate
                     attributeName="offset"
                     to="0%"
                     dur="0.5s"
-                    begin={i === 0 ? '0s' : `${i / 4}s`}
+                    begin={index === 0 ? '0s' : `${index / 4}s`}
                     fill="freeze"
                   />
                 </stop>
@@ -56,7 +59,7 @@ const HouseIcon = ({
                     attributeName="offset"
                     to="0%"
                     dur="0.5s"
-                    begin={i === 0 ? '0s' : `${i / 4}s`}
+                    begin={index === 0 ? '0s' : `${index / 4}s`}
                     fill="freeze"
                   />
                 </stop>
@@ -66,7 +69,7 @@ const HouseIcon = ({
               transform="translate(-1161.000000, -558.000000)"
               fill={`${
                 (item < highlight - 1 || item === highlight - 1) && !isIE
-                  ? `url(#${id}-${i})`
+                  ? `url(#${id}-${index})`
                   : (item < highlight - 1 || item === highlight - 1) && isIE
                   ? colors.midnight
                   : colors['light-gray']

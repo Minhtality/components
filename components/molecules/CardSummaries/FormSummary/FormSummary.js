@@ -5,10 +5,13 @@ import PropTypes from 'prop-types';
 import React, {Fragment} from 'react';
 import Button from '~components/atoms/Button/Button';
 import {exclusive} from '~proptypes';
+import {createUniqueIdArray} from '../../../../constants/js/utils';
 import '../CardSummaries.scss';
 import './FormSummary.scss';
 
 const FormSummary = ({shortTitle, editCard, answerGroups, to}) => {
+  const idArray = createUniqueIdArray(answerGroups.length);
+
   return (
     <Fragment>
       <div className="uic--card-summary uic--container-fluid">
@@ -26,8 +29,6 @@ const FormSummary = ({shortTitle, editCard, answerGroups, to}) => {
         </div>
       </div>
       {answerGroups.map((group, index) => {
-        const key = group.key || group.groupName || `${shortTitle}-${index}`;
-
         const groupClass = classNames({
           'uic--card-summary': true,
           'uic--card-summary-group': true,
@@ -35,13 +36,13 @@ const FormSummary = ({shortTitle, editCard, answerGroups, to}) => {
         });
 
         return (
-          <div key={key} className={groupClass}>
+          <div key={idArray[index]} className={groupClass}>
             {(answerGroups.length > 1 || group.groupName) && (
               <h3 className="uic--card-summary-label">{group.groupName}</h3>
             )}
 
-            {group.answers.map((answer) => (
-              <div key={`${key}-${answer.label}`} className="uic--row">
+            {group.answers.map((answer, idx) => (
+              <div key={idArray[idx]} className="uic--row">
                 <div className="uic--col-6">
                   <span className="uic--card-summary-label">
                     {answer.label}
@@ -65,8 +66,6 @@ FormSummary.propTypes = {
   /** An array of objects containing the groups of answers to display. The object is broken down below. */
   answerGroups: PropTypes.arrayOf(
     PropTypes.shape({
-      /** The React key to use for the group of data */
-      key: PropTypes.string,
       /** The name of the group of data */
       groupName: PropTypes.string,
       /** An array of objects containing the answers for the group. The object is broken down below. */

@@ -6,6 +6,7 @@ import {animated, config, Spring} from 'react-spring/renderprops.cjs';
 import Button from '~components/atoms/Button/Button';
 import Tooltip from '~components/atoms/Tooltip/Tooltip';
 import {formatCurrency} from '~components/utilities/FormatUtils/FormatUtils';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './ItemizationBox.scss';
 
 /** Displays a collapsible  box which itemizes and sums totals.  */
@@ -17,6 +18,7 @@ class ItemizationBox extends PureComponent {
     this.state = {
       isAnimating: false,
       height: props.isCollapsed ? 0 : '100%',
+      idArray: createUniqueIdArray(props.values.length),
     };
 
     this.contentNode = createRef();
@@ -72,7 +74,6 @@ class ItemizationBox extends PureComponent {
     } = this.props;
     const {height, isAnimating} = this.state;
     const total = this.sumTotal(values);
-
     const containerClasses = classNames(
       {
         'uic--itemization-box': true,
@@ -133,7 +134,7 @@ class ItemizationBox extends PureComponent {
                   });
 
                   return (
-                    <div className="uic--row" key={index}>
+                    <div className="uic--row" key={this.state.idArray[index]}>
                       {item.tooltip ? (
                         <div className="uic--col-8">
                           <div className="uic--row uic--align-items-center">

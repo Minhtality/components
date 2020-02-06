@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import OptionBox from '~components/atoms/OptionBox/OptionBox';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './Checkboxes.scss';
 
 const Checkboxes = ({
@@ -45,10 +46,12 @@ const Checkboxes = ({
     return onChange(name, Array.from(values));
   };
 
+  const idArray = createUniqueIdArray(options.length);
+
   return (
     <fieldset role="group" className={containerClasses} required={required}>
       <legend className={legendClasses}>
-        {options.map((option) => {
+        {options.map((option, index) => {
           const labelClasses = classNames({
             'uic--d-flex': true,
             'uic--align-center': true,
@@ -71,7 +74,7 @@ const Checkboxes = ({
           });
 
           return (
-            <div className={checkboxClasses} key={option.value}>
+            <div className={checkboxClasses} key={idArray[index]}>
               <label className={labelClasses}>
                 <span className={labelWrapper}>
                   <input

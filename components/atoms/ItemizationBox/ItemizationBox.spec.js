@@ -171,20 +171,18 @@ test('ItemizationBox - componentDidUpdate', (t) => {
 
   const component = mount(<ItemizationBox {...props} />);
 
-  t.deepEquals(
-    component.state(),
-    {isAnimating: true, height: '100%'},
+  t.true(component.state().isAnimating, 'The collapsed state should be false');
+  t.equal(
+    component.state().height,
+    '100%',
     'The collapsed state should be false',
   );
 
   component.instance().componentDidUpdate(prevProps);
 
   // Height is 0 here due to how the components render in Enzyme.
-  t.deepEquals(
-    component.state(),
-    {isAnimating: true, height: 0},
-    'The collapsed state should be true',
-  );
+  t.true(component.state().isAnimating, 'The collapsed state should be true');
+  t.equal(component.state().height, 0, 'The collapsed state should be true');
 
   t.end();
 });

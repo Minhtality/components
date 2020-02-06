@@ -10,6 +10,7 @@ import {
   isDocumentDefined,
   isWindowDefined,
 } from '~components/utilities/DetectBrowser/DetectBrowser';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import {colors} from '~constants/js/colors';
 import './Navbar.scss';
 
@@ -24,6 +25,11 @@ class Navbar extends PureComponent {
       fixed: props.isFixed,
       scroll: 0,
       mobile: false,
+      idArray: createUniqueIdArray(
+        props.leftNavigation.length > props.rightNavigation.length
+          ? props.leftNavigation.length
+          : props.rightNavigation,
+      ),
     };
     this.toggleDrawer = this.toggleDrawer.bind(this);
     this.toggleFixed = this.toggleFixed.bind(this);
@@ -157,7 +163,7 @@ class Navbar extends PureComponent {
       return (
         <li
           className={listItemClasses}
-          key={index}
+          key={this.state.idArray[index]}
           onClick={this.toggleActive}
           role="presentation"
         >
@@ -238,12 +244,14 @@ class Navbar extends PureComponent {
     });
 
     const IconComponent = open ? CloseIcon : HamburgerIcon;
-    const renderLeftNavigation = leftNavigation
-      ? this.generateNavigation(leftNavigation)
-      : null;
-    const renderRightNavigation = rightNavigation
-      ? this.generateNavigation(rightNavigation)
-      : null;
+    const renderLeftNavigation =
+      leftNavigation.length > 0
+        ? this.generateNavigation(leftNavigation)
+        : null;
+    const renderRightNavigation =
+      rightNavigation.length > 0
+        ? this.generateNavigation(rightNavigation)
+        : null;
 
     const linkProps = {
       'aria-label': 'home',
@@ -377,7 +385,7 @@ Navbar.propTypes = {
         PropTypes.string,
       ]),
     }),
-  ),
+  ).isRequired,
   /** Navigation items which appear on the right side of the bar. */
   rightNavigation: PropTypes.arrayOf(
     PropTypes.shape({
@@ -404,7 +412,7 @@ Navbar.propTypes = {
         PropTypes.string,
       ]),
     }),
-  ),
+  ).isRequired,
 };
 
 Navbar.defaultProps = {
@@ -414,6 +422,8 @@ Navbar.defaultProps = {
   isStatic: false,
   linkComponent: 'a',
   transitionToFixed: 0,
+  leftNavigation: [],
+  rightNavigation: [],
 };
 
 export default Navbar;

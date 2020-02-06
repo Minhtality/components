@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, {Component, createRef} from 'react';
 import Box from '~components/atoms/Box/Box';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './BoxSelect.scss';
 
 /** Displays a grid of box components.  */
@@ -13,6 +14,7 @@ class BoxSelect extends Component {
 
     this.state = {
       height: 0,
+      idArray: createUniqueIdArray(props.options.length),
     };
 
     this.contentNode = createRef();
@@ -72,9 +74,9 @@ class BoxSelect extends Component {
 
     return (
       <div className={containerClasses} style={style} ref={this.contentNode}>
-        {options.map((item) => (
+        {options.map((item, index) => (
           <div
-            key={item.value}
+            key={this.state.idArray[index]}
             className="uic--col-6 uic--col-sm-4"
             style={{minHeight: this.state.height}}
           >

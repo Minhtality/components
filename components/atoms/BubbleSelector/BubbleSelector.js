@@ -1,53 +1,58 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, {Fragment} from 'react';
+import {createUniqueIdArray} from '../../../constants/js/utils';
 import './BubbleSelector.scss';
 
-const BubbleSelector = ({options, value, onChange, fixedWidth}) => (
-  <Fragment>
-    {options &&
-      options.length > 0 &&
-      options.map((option) => {
-        const className = classNames({
-          'uic--bubble-selector__item': true,
-          'uic--bubble-selector__item--selected': value === option.value,
-          'uic--bubble-selector__item--fixed-width': fixedWidth,
-        });
+const BubbleSelector = ({options, value, onChange, fixedWidth}) => {
+  const idArray = createUniqueIdArray(options.length);
 
-        return (
-          <button
-            key={option.value}
-            type="button"
-            className={className}
-            onClick={() => {
-              onChange(option.value);
-            }}
-            style={{
-              ...(value !== option.value || !option.color
-                ? {}
-                : {
-                    backgroundColor: option.color,
-                    borderColor: option.color,
-                  }),
-              maxWidth: fixedWidth,
-            }}
-          >
-            {option.value}
-            <div
-              className="uic--bubble-selector__selected-indicator"
-              style={
-                value !== option.value || !option.color
+  return (
+    <Fragment>
+      {options &&
+        options.length > 0 &&
+        options.map((option, index) => {
+          const className = classNames({
+            'uic--bubble-selector__item': true,
+            'uic--bubble-selector__item--selected': value === option.value,
+            'uic--bubble-selector__item--fixed-width': fixedWidth,
+          });
+
+          return (
+            <button
+              key={idArray[index]}
+              type="button"
+              className={className}
+              onClick={() => {
+                onChange(option.value);
+              }}
+              style={{
+                ...(value !== option.value || !option.color
                   ? {}
                   : {
-                      borderTopColor: option.color,
-                    }
-              }
-            />
-          </button>
-        );
-      })}
-  </Fragment>
-);
+                      backgroundColor: option.color,
+                      borderColor: option.color,
+                    }),
+                maxWidth: fixedWidth,
+              }}
+            >
+              {option.value}
+              <div
+                className="uic--bubble-selector__selected-indicator"
+                style={
+                  value !== option.value || !option.color
+                    ? {}
+                    : {
+                        borderTopColor: option.color,
+                      }
+                }
+              />
+            </button>
+          );
+        })}
+    </Fragment>
+  );
+};
 
 BubbleSelector.propTypes = {
   /** Collection of option labels and optional colors */
