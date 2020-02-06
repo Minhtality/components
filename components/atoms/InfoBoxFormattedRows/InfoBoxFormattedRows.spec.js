@@ -29,23 +29,5 @@ test('InfoBoxFormattedRows - renders correctly', (t) => {
     'Key should be created on our behalf',
   );
 
-  const keyProps = {
-    rowData: [
-      {
-        key: 'custom-key',
-        label: 'data point 1',
-        value: '60%',
-      },
-    ],
-  };
-
-  const component2 = shallow(<InfoBoxFormattedRows {...keyProps} />);
-
-  t.notEqual(
-    component2.find('.uic--info-box-formatted-row').get(0).key,
-    component2.find('.uic--row-label').get(0).props.children,
-    'Key and label should not be equal when keys are passed',
-  );
-
   t.end();
 });

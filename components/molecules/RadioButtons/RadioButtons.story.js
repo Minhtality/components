@@ -33,7 +33,6 @@ const defaultProps = ({formName, table, options}) => ({
   onChange: (name, value) => store.set({[name]: value}),
   value: store.get(formName),
   options: object('options', options),
-  key: formName,
 });
 
 stories.add('default', () => (

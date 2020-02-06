@@ -46,7 +46,6 @@ test('FormSummary - Renders one answer', (t) => {
       shortTitle="This is a simpler question"
       answerGroups={[
         {
-          key: 'group0',
           groupName: 'group',
           answers: [
             {label: 'From', value: 'Bank of America Checking…8765'},

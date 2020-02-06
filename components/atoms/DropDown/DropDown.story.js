@@ -105,7 +105,6 @@ const defaultProps = ({
   required: boolean('required', true),
   isSubmitted: boolean('isSubmitted', false),
   showRequiredError: boolean('showRequiredError', showRequiredError),
-  key: formName,
 });
 
 stories.add(

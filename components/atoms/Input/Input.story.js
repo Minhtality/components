@@ -90,7 +90,6 @@ const defaultProps = ({
   sanitize: boolean('sanitize'),
   showRequiredError: boolean('showRequiredError', showRequiredError),
   type: text('type', 'text'),
-  key: formName,
 });
 
 const storyStyles = {
