@@ -1,9 +1,10 @@
-import {isDocumentDefined} from '~components/utilities/DetectBrowser/DetectBrowser';
 import classNames from 'classnames';
 import {useEffect} from 'react';
+import {isDocumentDefined} from '~components/utilities/DetectBrowser/DetectBrowser';
 
 /** Creates a wrapper div and appends it as a child to body.
- * @return {HTMLElement} - Returns the HTML element to be used in a React Portal.
+ * @param className - Any optional class names that should be applied to the portal container.
+ * @return - Returns the HTML element to be used in a React Portal.
  */
 export function usePortal(className?: string): HTMLElement | null {
   const root = isDocumentDefined() ? document.createElement('div') : null;
