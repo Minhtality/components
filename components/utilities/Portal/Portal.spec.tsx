@@ -5,17 +5,22 @@ import Portal from './Portal';
 
 test('Portal - renders', (t) => {
   try {
+    // Removes items from the document body so this test run is more accurate.
+    document.getElementsByTagName('html')[0].innerHTML = '';
+
     const component = render(
-      <Portal>
+      <Portal className="test-container">
         <span>Hello</span>
       </Portal>,
+      {container: document.body},
     );
 
     t.equals(
-      component.baseElement.querySelectorAll('div').length,
-      2,
-      'Should load the portal wrapper along with the test wrapper.',
+      component.container.querySelectorAll('.uic--portal-container').length,
+      1,
+      'Should load the portal container.',
     );
+
     t.true(component.getByText('Hello'));
   } catch (error) {
     t.fail(error);
