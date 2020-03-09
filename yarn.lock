@@ -1372,11 +1372,15 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
-"@sambego/storybook-state@1.3.6":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@sambego/storybook-state/-/storybook-state-1.3.6.tgz#9a6511095d200b8ab2d6bc39def81c90312dd420"
-  integrity sha512-bTUE1ZTtI9ICyqz6l5gtUfo0/W77fPP7KOAd/HI1jM7m1Jxjxs1k1Qbcrqmxg1vaHemlXVkvxVCZf8BT9RzxGw==
+"@sambego/storybook-state@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@sambego/storybook-state/-/storybook-state-2.0.1.tgz#862096913e708cbdeae32b0d2256fc59c254699b"
+  integrity sha512-pkD6IAMb+aB5Ow9toQDHOWZVnd0RAgsJekPfUL92UxCcx8EYM3J9xu6aPvmJbJJXc2bYcwv/z6l36Ej9cV7UJw==
   dependencies:
+    "@storybook/addons" "^5.3.3"
+    "@storybook/api" "^5.3.3"
+    "@storybook/components" "^5.3.3"
+    "@storybook/react" "^5.3.3"
     uuid "^3.1.0"
 
 "@sentry/apm@5.11.1":
@@ -1641,7 +1645,7 @@
     global "^4.3.2"
     util-deprecate "^1.0.2"
 
-"@storybook/addons@5.3.14":
+"@storybook/addons@5.3.14", "@storybook/addons@^5.3.3":
   version "5.3.14"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.3.14.tgz#ff96c2c46a617f777c3660395017d2aef5319f19"
   integrity sha512-zoN1MYlArdThp93i+Ogil/pihyx8n7nkrdSO0j9HUh6jUsGeFFEluPQZdRFte9NIoY6ZWSWwuEMDgrv2Pw9r2Q==
@@ -1680,7 +1684,7 @@
     telejson "^3.2.0"
     util-deprecate "^1.0.2"
 
-"@storybook/api@5.3.14":
+"@storybook/api@5.3.14", "@storybook/api@^5.3.3":
   version "5.3.14"
   resolved "https://registry.yarnpkg.com/@storybook/api/-/api-5.3.14.tgz#8c2bb226a4a5de7974ee2ccce36986b72f462f1b"
   integrity sha512-ANWRMTLEoAfu0IsXqbxmbTpxS8xTByZgLj20tH96bxgH1rJo9KAZnJ8A9kGYr+zklU8QnYvVIgmV3HESXII9zg==
@@ -1795,7 +1799,7 @@
     simplebar-react "^1.0.0-alpha.6"
     ts-dedent "^1.1.0"
 
-"@storybook/components@5.3.14":
+"@storybook/components@5.3.14", "@storybook/components@^5.3.3":
   version "5.3.14"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-5.3.14.tgz#0f2f90113674e14ee74d5d16d6b3b1220cb0fa16"
   integrity sha512-AsjkIFBrrqcBDLxGdmUHiauZo5gOL65eXx8WA7/yJDF8s45VVZX5Z0buOnjFyEhGVus02gwTov8da2irjL862A==
@@ -1941,7 +1945,7 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/react@5.3.14":
+"@storybook/react@5.3.14", "@storybook/react@^5.3.3":
   version "5.3.14"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-5.3.14.tgz#6715d9ee64e1c7b5c1e45cdbbf6df809bad60b8c"
   integrity sha512-8n0oCkaxFMrimngxnISEQFkHGSF5z65Lh1XPypjIndIJ0b/IVWRJcUEh3M3xOaydFatEG+lfQbF/5OznyYEefA==
